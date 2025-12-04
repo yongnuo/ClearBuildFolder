@@ -2,7 +2,7 @@
   "profiles": {
     "ClearBinObjFolders": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\Code\\VattenFastTeamTest"
+      "commandLineArgs": "C:\\Code\\VattenFast"
     }
   }
 }

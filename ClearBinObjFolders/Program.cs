@@ -1,6 +1,8 @@
-﻿var rootDirectory = args[0];
+﻿Console.WriteLine(string.Join(", ", args));
+var rootDirectory = args[0];
 
-Console.Title = "ClearBinObjFolders.exe";
+
+Console.Title = "ClearBuildFolders";
 
 if (!Directory.Exists(rootDirectory))
 {
@@ -39,9 +41,16 @@ IEnumerable<string> GetDirectoriesToRemove(IEnumerable<string> directories)
     return directories.Where(dir =>
     {
         var leaf = Path.GetFileName(dir);
+        var parent = Path.GetFileName(Path.GetDirectoryName(dir));
+
         return leaf != null &&
             (leaf.Equals("obj", StringComparison.InvariantCultureIgnoreCase)
             ||
-            leaf.Equals("bin", StringComparison.InvariantCultureIgnoreCase));
-    });
+            leaf.Equals("bin", StringComparison.InvariantCultureIgnoreCase)
+            ||
+            (
+                leaf.Equals("external", StringComparison.InvariantCultureIgnoreCase) 
+                    && parent?.Equals("wwwroot", StringComparison.InvariantCultureIgnoreCase) is true
+            ));
+});
 }
