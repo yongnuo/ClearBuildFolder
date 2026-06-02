@@ -1,4 +1,9 @@
 ﻿Console.WriteLine(string.Join(", ", args));
+if (args.Length == 0)
+{
+    Console.WriteLine($"A folder must be provided");
+    Environment.Exit(1);
+}
 var rootDirectory = args[0];
 
 
